@@ -33,7 +33,7 @@ SELECT trainnr FROM connection WHERE fromstation IN (SELECT name FROM station WH
 ```
 ![](./screens/Moscow-Tverr.png)
 7. Найдите все многосегментные маршруты, имеющие точно однодневный трансфер из Москвы в Санкт-Петербург 
-/```
+```
 SELECT
     c1.trainnr AS first_segment_train,
     c1.fromstation AS start_point,
