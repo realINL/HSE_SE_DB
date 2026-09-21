@@ -4,7 +4,7 @@
 ```sql
 SELECT lastname FROM reader WHERE address LIKE 'Москва%';
 ```
-![](./screens/a.png)
+![](screens/a.png)
 
 #### 2. Какие книги (author, title) брал Иван Иванов?
 ```sql
