@@ -10,33 +10,33 @@ SELECT lastname FROM reader WHERE address LIKE 'Москва%';
 ```sql
 SELECT author, title FROM book JOIN borrowing ON book.isbn = borrowing.isbn WHERE borrowing.id = 10000;
 ```
-![](./screens/b.png)
+![](screens/b.png)
 *В тестовых данных не было книг, которые брал Иван Иванов, поэтому он был заменен на Reader One.*
 
 #### 3. Какие книги (ISBN) из категории "Горы" не относятся к категории "Путешествия"? 
 ```sql
 SELECT isbn FROM bookcategory WHERE categoryname = 'Горы' AND isbn NOT IN (SELECT isbn FROM bookcategory WHERE categoryname = 'Путешествия');
 ```
-![](./screens/v.png)
+![](screens/v.png)
 
 #### 4. Какие читатели (LastName, FirstName) вернули копию книги?
 ```sql
 SELECT firstname, lastname FROM reader JOIN borrowing ON reader.id = borrowing.id WHERE borrowing.returndate <= CURRENT_DATE; 
 ```
-![](./screens/g.png)
+![](screens/g.png)
 
 #### 5. Какие читатели (LastName, FirstName) брали хотя бы одну книгу (не копию), которую брал также Иван Иванов (не включайте Ивана Иванова в результат)?
 ```sql
 SELECT lastname, firstname FROM reader JOIN borrowing ON reader.id = borrowing.id WHERE isbn IN (SELECT isbn FROM borrowing where id = 10000) AND borrowing.id <> 10000;
 ```
-![](./screens/d.png)
+![](screens/d.png)
 *В тестовых данных не было книг, которые брал Иван Иванов, поэтому он был заменен на Reader One.*
 
 #### 6. Найдите все прямые рейсы из Москвы в Тверь.
 ```sql
 SELECT trainnr FROM connection WHERE fromstation IN (SELECT name FROM station WHERE cityname = 'Москва') INTERSECT SELECT trainnr FROM connection WHERE tostation IN (SELECT name FROM station WHERE cityname = 'Тверь')
 ```
-![](./screens/Moscow-Tverr.png)
+![](screens/Moscow-Tverr.png)
 
 #### 7. Найдите все многосегментные маршруты, имеющие точно однодневный трансфер из Москвы в Санкт-Петербург 
 ```sql
@@ -60,4 +60,4 @@ WHERE
     AND cast(c1.departure as DATE) = cast(c2.arrival as DATE);
 
 ```
-![](./screens/multisegment.png)
+![](screens/multisegment.png)
